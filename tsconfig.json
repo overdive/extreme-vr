@@ -1,0 +1,29 @@
+{
+    "compilerOptions": {
+        // ESのターゲットバージョン
+        "target": "ESNEXT",
+        // モジュールの方式
+        "module": "commonjs",
+        // JSXコード生成を指定
+        "jsx": "react",
+        // '.d.ts'ファイルを生成
+        "declaration": false,
+        // 型チェックオプションの有効
+        "strict": true,
+        // デフォルトのインポートを許可
+        "allowSyntheticDefaultImports": true,
+        // CommonJSモジュールとESモジュール間の相互運用性コードを追加
+        "esModuleInterop": true,
+        // タイプ定義を含むフォルダのリスト
+        "typeRoots": ["src/types/"],
+        // 未使用変数の報告
+        "noUnusedLocals": true,
+        // 未使用パラメータの報告
+        "noUnusedParameters": true,
+        // any型許可の有無
+        "noImplicitAny": false,
+        // モジュール解決の方針
+        "moduleResolution": "node"
+    },
+    "include": ["./src/**/*"]
+}
