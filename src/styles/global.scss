@@ -1,0 +1,16 @@
+/**
+ * Global Styles
+ */
+
+@import 'ress';
+
+@mixin font-default() {
+    font-family: 'Hiragino Sans', Meiryo, Verdana, sans-serif;
+}
+
+body {
+    @include font-default();
+    background-color: #212121;
+    box-sizing: border-box;
+    color: #fff;
+}
