@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Layout from '../components/layout';
 import Nav from '../components/nav';
 import CategoryBar from '../components/categoryBar';
-import Breadcrumbs from '../components/breadcrumbs';
+import Breadcrumbs from '../components/breadCrumbs';
 import SEO from '../components/seo';
 
 /* TODO: types */
