@@ -1,24 +1,7 @@
 import { Link } from 'gatsby';
 import React from 'react';
 import styled from 'styled-components';
-
-/* TODO: types */
-interface IPostData {
-    id: string;
-    title: string;
-    slug: string;
-    video_categories: number[];
-    acf: {
-        video_id: string;
-    };
-}
-
-interface ICategoryData {
-    id: string;
-    name: string;
-    slug: string;
-    wordpress_id: number;
-}
+import { IPostData, ICategoryData } from '../types';
 
 interface IBreadCrumbsProps {
     categoryData: { node: ICategoryData }[];

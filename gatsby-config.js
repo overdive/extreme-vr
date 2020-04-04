@@ -25,6 +25,13 @@ module.exports = {
     },
     plugins: [
         {
+            resolve: 'gatsby-plugin-google-analytics',
+            options: {
+                trackingId: process.env.GATSBY_GOOGLE_ANALYTICS,
+                head: true,
+            },
+        },
+        {
             resolve: `gatsby-source-filesystem`,
             options: {
                 name: `images`,

@@ -1,10 +1,11 @@
 import React from 'react';
 import { StaticQuery, graphql } from 'gatsby';
-import Img from 'gatsby-image';
+import Img from 'gatsby-image/withIEPolyfill';
 
 interface IImageProps {
     filename: string;
     alt?: string;
+    style?: object;
 }
 
 export default (props: IImageProps) => (
@@ -17,8 +18,11 @@ export default (props: IImageProps) => (
                             relativePath
                             name
                             childImageSharp {
-                                sizes(maxWidth: 300) {
+                                sizes {
                                     ...GatsbyImageSharpSizes
+                                }
+                                fluid {
+                                    ...GatsbyImageSharpFluid
                                 }
                             }
                         }
@@ -27,14 +31,15 @@ export default (props: IImageProps) => (
             }
         `}
         render={data => {
+            const { filename, alt, style } = props;
             const image = data.images.edges.find(n => {
-                return n.node.relativePath.includes(props.filename);
+                return n.node.relativePath.includes(filename);
             });
 
             if (!image) return;
 
-            const imageSizes = image.node.childImageSharp.sizes;
-            return <Img sizes={imageSizes} alt={props.alt} />;
+            const imageFluid = image.node.childImageSharp.fluid;
+            return <Img fluid={imageFluid} alt={alt} style={style} />;
         }}
     />
 );

@@ -3,16 +3,7 @@ import React from 'react';
 import Swiper from 'react-id-swiper';
 import styled from 'styled-components';
 import 'swiper/swiper.scss';
-
-interface IPostData {
-    id: string;
-    title: string;
-    slug: string;
-    video_categories: number[];
-    acf: {
-        video_id: string;
-    };
-}
+import { IPostData } from '../types';
 
 interface ISiderProps {
     postData: { node: IPostData }[];
@@ -40,6 +31,7 @@ const StyledWrapper = styled.div`
 
 const StyledSlide = styled.div`
     background-color: #303030;
+    width: 340px;
 `;
 
 const StyledLink = styled(Link)`
@@ -63,13 +55,24 @@ const StyledImage = styled.img`
     transform: translate3d(-50%, -50%, 0);
 `;
 
-const StyledCaption = styled.span`
+const StyledCaption = styled.div`
     display: block;
     padding: 10px 8px;
     height: 74px;
     box-sizing: border-box;
     color: #fff;
     font-size: 18px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+`;
+
+const StyledText = styled.span`
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    max-height: calc(2em * 1.4);
 `;
 
 const SliderComponent: React.FC<ISiderProps> = props => {
@@ -86,7 +89,9 @@ const SliderComponent: React.FC<ISiderProps> = props => {
                                     alt={node.title}
                                 />
                             </StyledImageWrapper>
-                            <StyledCaption>{node.title}</StyledCaption>
+                            <StyledCaption>
+                                <StyledText>{node.title}</StyledText>
+                            </StyledCaption>
                         </StyledLink>
                     </StyledSlide>
                 ))}

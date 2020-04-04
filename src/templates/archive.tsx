@@ -6,24 +6,8 @@ import Nav from '../components/nav';
 import CategoryBar from '../components/categoryBar';
 import Breadcrumbs from '../components/breadCrumbs';
 import SEO from '../components/seo';
-
-/* TODO: types */
-interface IPostData {
-    id: string;
-    title: string;
-    slug: string;
-    video_categories: number[];
-    acf: {
-        video_id: string;
-    };
-}
-
-interface ICategoryData {
-    id: string;
-    name: string;
-    slug: string;
-    wordpress_id: number;
-}
+import Footer from '../components/footer';
+import { IPostData, ICategoryData } from '../types';
 
 interface IArchiveProps {
     pageContext: {
@@ -33,17 +17,21 @@ interface IArchiveProps {
     };
 }
 
-const StyledMainContents = styled.main`
+const StyledContainer = styled.div`
     overflow: hidden;
     flex-grow: 1;
     flex-shrink: 1;
-    padding: 0 40px;
-    width: calc(100% - 280px);
+    width: 84%;
     min-width: 720px;
+`;
+
+const StyledMainContents = styled.main`
+    width: 100%;
+    padding: 0 40px;
     box-sizing: border-box;
 `;
 
-const StyledWrapper = styled.div`
+const StyledInner = styled.div`
     display: flex;
     flex-wrap: wrap;
 `;
@@ -86,13 +74,21 @@ const StyledImage = styled.img`
     transform: translate3d(-50%, -50%, 0);
 `;
 
-const StyledCaption = styled.span`
+const StyledCaption = styled.div`
     display: block;
     padding: 10px 8px;
     height: 74px;
     box-sizing: border-box;
     color: #fff;
     font-size: 18px;
+`;
+
+const StyledText = styled.span`
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    max-height: calc(2em * 1.4);
 `;
 
 const ArchivePageComponent: React.FC<IArchiveProps> = props => {
@@ -103,31 +99,38 @@ const ArchivePageComponent: React.FC<IArchiveProps> = props => {
             <Nav>
                 <CategoryBar categoryData={categoryData} />
             </Nav>
-            <StyledMainContents>
-                <Breadcrumbs categoryData={singleCategoryData} />
-                <StyledSection>
-                    <StyledHeadline>
-                        {singleCategoryData.map(({ node }: { node: ICategoryData }) => (
-                            <span key={node.slug}>「{node.name}」</span>
-                        ))}
-                    </StyledHeadline>
-                    <StyledWrapper>
-                        {postData.map(({ node }: { node: IPostData }) => (
-                            <StyledCard key={node.id}>
-                                <StyledLink to={'/video/' + node.slug}>
-                                    <StyledImageWrapper>
-                                        <StyledImage
-                                            src={'http://img.youtube.com/vi/' + node.acf.video_id + '/mqdefault.jpg'}
-                                            alt={node.title}
-                                        />
-                                    </StyledImageWrapper>
-                                    <StyledCaption>{node.title}</StyledCaption>
-                                </StyledLink>
-                            </StyledCard>
-                        ))}
-                    </StyledWrapper>
-                </StyledSection>
-            </StyledMainContents>
+            <StyledContainer>
+                <StyledMainContents>
+                    <Breadcrumbs categoryData={singleCategoryData} />
+                    <StyledSection>
+                        <StyledHeadline>
+                            {singleCategoryData.map(({ node }: { node: ICategoryData }) => (
+                                <span key={node.slug}>「{node.name}」</span>
+                            ))}
+                        </StyledHeadline>
+                        <StyledInner>
+                            {postData.map(({ node }: { node: IPostData }) => (
+                                <StyledCard key={node.id}>
+                                    <StyledLink to={'/video/' + node.slug}>
+                                        <StyledImageWrapper>
+                                            <StyledImage
+                                                src={
+                                                    'http://img.youtube.com/vi/' + node.acf.video_id + '/mqdefault.jpg'
+                                                }
+                                                alt={node.title}
+                                            />
+                                        </StyledImageWrapper>
+                                        <StyledCaption>
+                                            <StyledText>{node.title}</StyledText>
+                                        </StyledCaption>
+                                    </StyledLink>
+                                </StyledCard>
+                            ))}
+                        </StyledInner>
+                    </StyledSection>
+                </StyledMainContents>
+                <Footer />
+            </StyledContainer>
         </Layout>
     );
 };

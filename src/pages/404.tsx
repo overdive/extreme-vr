@@ -2,14 +2,19 @@ import React from 'react';
 import styled from 'styled-components';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
+import Footer from '../components/footer';
 
-const StyledMainContents = styled.main`
+const StyledContainer = styled.div`
     overflow: hidden;
     flex-grow: 1;
     flex-shrink: 1;
-    padding: 0 40px;
-    width: calc(100% - 280px);
+    width: 84%;
     min-width: 720px;
+`;
+
+const StyledMainContents = styled.main`
+    width: 100%;
+    padding: 0 40px;
     box-sizing: border-box;
 `;
 
@@ -25,11 +30,14 @@ const StyledText = styled.p`
 const NotFoundPageComponent: React.FC = () => (
     <Layout>
         <SEO title="404: Not found" />
-        <StyledMainContents>
-            <StyledSection>
-                <StyledText>お探しのページは見つかりませんでした</StyledText>
-            </StyledSection>
-        </StyledMainContents>
+        <StyledContainer>
+            <StyledMainContents>
+                <StyledSection>
+                    <StyledText>お探しのページは見つかりませんでした</StyledText>
+                </StyledSection>
+            </StyledMainContents>
+            <Footer />
+        </StyledContainer>
     </Layout>
 );
 
