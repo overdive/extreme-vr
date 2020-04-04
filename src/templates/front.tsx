@@ -5,24 +5,8 @@ import Nav from '../components/nav';
 import CategoryBar from '../components/categoryBar';
 import Slider from '../components/slider';
 import SEO from '../components/seo';
-
-/* TODO: types */
-interface IPostData {
-    id: string;
-    title: string;
-    slug: string;
-    video_categories: number[];
-    acf: {
-        video_id: string;
-    };
-}
-
-interface ICategoryData {
-    id: string;
-    name: string;
-    slug: string;
-    wordpress_id: number;
-}
+import Footer from '../components/footer';
+import { IPostData, ICategoryData } from '../types';
 
 interface IFrontPageProps {
     pageContext: {
@@ -35,13 +19,17 @@ interface IFrontPageProps {
     };
 }
 
-const StyledMainContents = styled.main`
+const StyledContainer = styled.div`
     overflow: hidden;
     flex-grow: 1;
     flex-shrink: 1;
-    padding: 0 40px;
-    width: calc(100% - 280px);
+    width: 84%;
     min-width: 720px;
+`;
+
+const StyledMainContents = styled.main`
+    width: 100%;
+    padding: 0 40px;
     box-sizing: border-box;
 `;
 
@@ -63,14 +51,17 @@ const FrontPageComponent: React.FC<IFrontPageProps> = props => {
             <Nav>
                 <CategoryBar categoryData={categoryData} />
             </Nav>
-            <StyledMainContents>
-                {customPostData.map(node => (
-                    <StyledSection key={node.slug}>
-                        <StyledHeadline>{node.name}</StyledHeadline>
-                        <Slider postData={node.postData} />
-                    </StyledSection>
-                ))}
-            </StyledMainContents>
+            <StyledContainer>
+                <StyledMainContents>
+                    {customPostData.map(node => (
+                        <StyledSection key={node.slug}>
+                            <StyledHeadline>{node.name}</StyledHeadline>
+                            <Slider postData={node.postData} />
+                        </StyledSection>
+                    ))}
+                </StyledMainContents>
+                <Footer />
+            </StyledContainer>
         </Layout>
     );
 };

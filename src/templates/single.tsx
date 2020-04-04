@@ -5,24 +5,8 @@ import Nav from '../components/nav';
 import CategoryBar from '../components/categoryBar';
 import Breadcrumbs from '../components/breadCrumbs';
 import SEO from '../components/seo';
-
-/* TODO: types */
-interface IPostData {
-    id: string;
-    title: string;
-    slug: string;
-    video_categories: number[];
-    acf: {
-        video_id: string;
-    };
-}
-
-interface ICategoryData {
-    id: string;
-    name: string;
-    slug: string;
-    wordpress_id: number;
-}
+import Footer from '../components/footer';
+import { IPostData, ICategoryData } from '../types';
 
 interface ISinglePostProps {
     pageContext: {
@@ -32,13 +16,17 @@ interface ISinglePostProps {
     };
 }
 
-const StyledMainContents = styled.main`
+const StyledContainer = styled.div`
     overflow: hidden;
     flex-grow: 1;
     flex-shrink: 1;
-    padding: 0 40px;
-    width: calc(100% - 280px);
+    width: 84%;
     min-width: 720px;
+`;
+
+const StyledMainContents = styled.main`
+    width: 100%;
+    padding: 0 40px;
     box-sizing: border-box;
 `;
 
@@ -78,15 +66,18 @@ const SinglePageComponent: React.FC<ISinglePostProps> = props => {
             <Nav>
                 <CategoryBar categoryData={categoryData} />
             </Nav>
-            <StyledMainContents>
-                <Breadcrumbs categoryData={singleCategoryData} singlePageData={singlePostData} />
-                <StyledSection>
-                    <StyledImageWrapper>
-                        <StyledIframe src={url} />
-                    </StyledImageWrapper>
-                    <StyledHeadline>{singlePostData.node.title}</StyledHeadline>
-                </StyledSection>
-            </StyledMainContents>
+            <StyledContainer>
+                <StyledMainContents>
+                    <Breadcrumbs categoryData={singleCategoryData} singlePageData={singlePostData} />
+                    <StyledSection>
+                        <StyledImageWrapper>
+                            <StyledIframe src={url} />
+                        </StyledImageWrapper>
+                        <StyledHeadline>{singlePostData.node.title}</StyledHeadline>
+                    </StyledSection>
+                </StyledMainContents>
+                <Footer />
+            </StyledContainer>
         </Layout>
     );
 };

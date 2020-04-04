@@ -1,13 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
-
-interface ICategoryData {
-    id: string;
-    name: string;
-    slug: string;
-    wordpress_id: number;
-}
+import { ICategoryData } from '../types';
 
 interface ICategoryBarProps {
     categoryData: { node: ICategoryData }[];
@@ -32,7 +26,7 @@ const StyledLink = styled(Link)`
     display: block;
     padding: 0.5em 10px;
     color: #ffffff;
-    font-size: 20px;
+    font-size: 16px;
     text-decoration: none;
 `;
 

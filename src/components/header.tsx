@@ -9,23 +9,25 @@ const StyledHeader = styled.header`
     left: 0;
     z-index: 999;
     background-color: #171717;
-    padding: 45px 30px 33px;
+    padding: 15px 30px;
     width: 100%;
-    height: 125px;
+    height: 70px;
 `;
 
 const StyledLogo = styled.h1`
-    width: 380px;
+    width: 330px;
 `;
 
-const HeaderComponent: React.FC = () => (
-    <StyledHeader>
-        <StyledLogo>
-            <Link to="/">
-                <Image filename="logo.png" alt="EXTREME VR" />
-            </Link>
-        </StyledLogo>
-    </StyledHeader>
-);
+const HeaderComponent: React.FC = () => {
+    return (
+        <StyledHeader>
+            <StyledLogo>
+                <Link to="/">
+                    <Image filename="logo.png" alt="EXTREME VR" />
+                </Link>
+            </StyledLogo>
+        </StyledHeader>
+    );
+};
 
 export default HeaderComponent;
