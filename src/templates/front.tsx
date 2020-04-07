@@ -47,7 +47,7 @@ const FrontPageComponent: React.FC<IFrontPageProps> = props => {
     const { customPostData, categoryData } = props.pageContext;
     return (
         <Layout>
-            <SEO title="EXTREME VR" />
+            <SEO title="Extreme VR | エクストリームスポーツのVR無料動画" />
             <Nav>
                 <CategoryBar categoryData={categoryData} />
             </Nav>

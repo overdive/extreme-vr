@@ -95,7 +95,13 @@ const ArchivePageComponent: React.FC<IArchiveProps> = props => {
     const { postData, categoryData, singleCategoryData } = props.pageContext;
     return (
         <Layout>
-            <SEO title={singleCategoryData[0].node.name} />
+            <SEO
+                title={singleCategoryData[0].node.name + 'のVR無料動画一覧'}
+                description={
+                    singleCategoryData[0].node.name +
+                    'のVR無料動画｜Extreme VRは、エクストリームスポーツを気軽にVR体験できる無料動画サービスです。'
+                }
+            />
             <Nav>
                 <CategoryBar categoryData={categoryData} />
             </Nav>
