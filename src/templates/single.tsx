@@ -62,7 +62,10 @@ const SinglePageComponent: React.FC<ISinglePostProps> = props => {
     const url = 'https://www.youtube.com/embed/' + singlePostData.node.acf.video_id;
     return (
         <Layout>
-            <SEO title={singlePostData.node.title} />
+            <SEO
+                title={singlePostData.node.title + 'のVR無料動画'}
+                description={singlePostData.node.title + 'のVR無料動画｜Extreme VR'}
+            />
             <Nav>
                 <CategoryBar categoryData={categoryData} />
             </Nav>

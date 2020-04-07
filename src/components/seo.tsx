@@ -21,12 +21,13 @@ const SeoComponent: React.FC<ISeoProps> = props => {
             }
         }
     `);
+    const metaSiteTitle = ~props.title.indexOf('|') ? '' : `%s | ${site.siteMetadata.title}`;
     const metaDescription = props.description || site.siteMetadata.description;
     return (
         <Helmet
             htmlAttributes={{ lang: props.lang }}
             title={props.title}
-            titleTemplate={`%s | ${site.siteMetadata.title}`}
+            titleTemplate={metaSiteTitle}
             meta={[
                 {
                     name: 'description',
