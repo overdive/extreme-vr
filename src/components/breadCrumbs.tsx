@@ -9,30 +9,36 @@ interface IBreadCrumbsProps {
 }
 
 const StyledList = styled.ul`
-    padding-top: 6px;
-    font-size: 0px;
+    overflow: hidden;
+    display: flex;
+    align-content: flex-start;
+    margin-top: 6px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 `;
 
 const StyledItem = styled.li`
     position: relative;
-    display: inline-block;
+    list-style: none;
+    font-size: 14px;
     &:nth-child(n + 2) {
         padding-left: 20px;
         &::before {
             position: absolute;
-            top: calc(50% - 1px);
-            left: 2px;
+            top: calc(50% - 4.6px);
+            left: 7px;
             display: block;
             content: '';
-            margin-top: -2px;
             width: 8px;
             height: 8px;
             border-top: solid 2px;
             border-right: solid 2px;
-            transform: rotate(45deg) translateY(-50%);
+            transform: rotate(45deg) translateX(-50%);
             color: inherit;
-            font-size: 14px;
         }
+    }
+    &:nth-child(3) {
+        overflow: hidden;
     }
 `;
 
@@ -46,9 +52,12 @@ const StyledLink = styled(Link)`
 
 const StyledText = styled.span`
     display: inline-block;
-    vertical-align: middle;
+    overflow: hidden;
+    max-width: 100%;
     color: #ffffff;
     font-size: 14px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 `;
 
 const BreadCrumbsComponent: React.FC<IBreadCrumbsProps> = props => {
