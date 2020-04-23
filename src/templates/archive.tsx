@@ -121,7 +121,7 @@ const ArchivePageComponent: React.FC<IArchiveProps> = props => {
                                         <StyledImageWrapper>
                                             <StyledImage
                                                 src={
-                                                    'http://img.youtube.com/vi/' + node.acf.video_id + '/mqdefault.jpg'
+                                                    'https://img.youtube.com/vi/' + node.acf.video_id + '/mqdefault.jpg'
                                                 }
                                                 alt={node.title}
                                             />

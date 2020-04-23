@@ -85,7 +85,7 @@ const SliderComponent: React.FC<ISiderProps> = props => {
                         <StyledLink to={'/video/' + node.slug}>
                             <StyledImageWrapper>
                                 <StyledImage
-                                    src={'http://img.youtube.com/vi/' + node.acf.video_id + '/mqdefault.jpg'}
+                                    src={'https://img.youtube.com/vi/' + node.acf.video_id + '/mqdefault.jpg'}
                                     alt={node.title}
                                 />
                             </StyledImageWrapper>

@@ -144,7 +144,7 @@ const SinglePageComponent: React.FC<ISinglePostProps> = props => {
                                             <StyledImageWrapper>
                                                 <StyledImage
                                                     src={
-                                                        'http://img.youtube.com/vi/' +
+                                                        'https://img.youtube.com/vi/' +
                                                         node.acf.video_id +
                                                         '/mqdefault.jpg'
                                                     }
