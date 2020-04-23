@@ -21,13 +21,14 @@ exports.createPages = async ({ graphql, actions }) => {
                         }
                     }
                 }
-                allWordpressWpVideoCategories {
+                allWordpressWpVideoCategories(filter: { count: { gt: 0 } }) {
                     edges {
                         node {
                             id
                             name
                             slug
                             wordpress_id
+                            count
                         }
                     }
                 }
@@ -83,11 +84,15 @@ exports.createPages = async ({ graphql, actions }) => {
                                     video_categories
                                     acf {
                                         video_id
+                                        video_recommend {
+                                            slug: post_name
+                                        }
+                                        video_recommend_flg
                                     }
                                 }
                             }
                         }
-                        allWordpressWpVideoCategories {
+                        allWordpressWpVideoCategories(filter: { count: { gt: 0 } }) {
                             edges {
                                 node {
                                     id
@@ -116,6 +121,16 @@ exports.createPages = async ({ graphql, actions }) => {
                                 categoryObject.push(object);
                             }
                         });
+                        const recObject = [];
+                        _.each(post.node.acf.video_recommend, recPost => {
+                            _.each(videoPosts, videoPost => {
+                                if (videoPost.node.slug.includes(recPost.slug)) {
+                                    const object = {};
+                                    object.node = videoPost.node;
+                                    recObject.push(object);
+                                }
+                            });
+                        });
                         createPage({
                             path: `/video/${post.node.slug}`,
                             component: slash(pageTemplate),
@@ -123,6 +138,7 @@ exports.createPages = async ({ graphql, actions }) => {
                                 singlePostData: post,
                                 singleCategoryData: categoryObject,
                                 categoryData: categoryPosts,
+                                recommendData: recObject,
                             },
                         });
                     });
@@ -131,7 +147,7 @@ exports.createPages = async ({ graphql, actions }) => {
             .then(() => {
                 graphql(`
                     {
-                        allWordpressWpVideo {
+                        allWordpressWpVideo(filter: { acf: { video_slide_flg: { eq: "true" } } }) {
                             edges {
                                 node {
                                     id
@@ -144,13 +160,14 @@ exports.createPages = async ({ graphql, actions }) => {
                                 }
                             }
                         }
-                        allWordpressWpVideoCategories {
+                        allWordpressWpVideoCategories(filter: { count: { gt: 0 } }) {
                             edges {
                                 node {
                                     id
                                     name
                                     slug
                                     wordpress_id
+                                    count
                                 }
                             }
                         }

@@ -1,5 +1,7 @@
 /* types */
 
+type BooleanText = 'true' | 'false';
+
 export interface IPostData {
     id: string;
     title: string;
@@ -7,6 +9,11 @@ export interface IPostData {
     video_categories: number[];
     acf: {
         video_id: string;
+        video_recommend?: {
+            post_name: string;
+        };
+        video_slide_flg?: BooleanText;
+        video_recommend_flg?: BooleanText;
     };
 }
 
