@@ -33,7 +33,9 @@
                 "endOfLine": "lf",
                 "jsxBracketSameLine": true
             }
-        ]
+        ],
+        "@typescript-eslint/interface-name-prefix": ["error", { "prefixWithI": "always" }],
+        "import/extensions": [".js", ".jsx", ".json", ".ts", ".tsx"]
     },
     "overrides": [
         {

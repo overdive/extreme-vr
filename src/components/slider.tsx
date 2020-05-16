@@ -82,10 +82,10 @@ const SliderComponent: React.FC<ISiderProps> = props => {
             <Swiper {...params}>
                 {postData.map(({ node }: { node: IPostData }) => (
                     <StyledSlide key={node.slug}>
-                        <StyledLink to={'/video/' + node.slug}>
+                        <StyledLink to={`/video/${node.slug}`}>
                             <StyledImageWrapper>
                                 <StyledImage
-                                    src={'https://img.youtube.com/vi/' + node.acf.video_id + '/mqdefault.jpg'}
+                                    src={`https://img.youtube.com/vi/${node.acf.video_id}/mqdefault.jpg`}
                                     alt={node.title}
                                 />
                             </StyledImageWrapper>

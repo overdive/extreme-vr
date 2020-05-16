@@ -22,4 +22,10 @@ export interface ICategoryData {
     name: string;
     slug: string;
     wordpress_id: number;
+    subCategoryData?: {
+        id: string;
+        name: string;
+        slug: string;
+        wordpress_id: number;
+    }[];
 }

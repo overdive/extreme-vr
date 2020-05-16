@@ -92,15 +92,13 @@ const StyledText = styled.span`
 `;
 
 const ArchivePageComponent: React.FC<IArchiveProps> = props => {
-    const { postData, categoryData, singleCategoryData } = props.pageContext;
+    const propsData = props;
+    const { postData, categoryData, singleCategoryData } = propsData.pageContext;
     return (
         <Layout>
             <SEO
-                title={singleCategoryData[0].node.name + 'のVR無料動画一覧'}
-                description={
-                    singleCategoryData[0].node.name +
-                    'のVR無料動画｜Extreme VRは、エクストリームスポーツを気軽にVR体験できる無料動画サービスです。'
-                }
+                title={`${singleCategoryData[0].node.name}のVR無料動画一覧`}
+                description={`${singleCategoryData[0].node.name}のVR無料動画｜Extreme VRは、エクストリームスポーツを気軽にVR体験できる無料動画サービスです。`}
             />
             <Nav>
                 <CategoryBar categoryData={categoryData} />
@@ -117,12 +115,10 @@ const ArchivePageComponent: React.FC<IArchiveProps> = props => {
                         <StyledInner>
                             {postData.map(({ node }: { node: IPostData }) => (
                                 <StyledCard key={node.id}>
-                                    <StyledLink to={'/video/' + node.slug}>
+                                    <StyledLink to={`/video/${node.slug}`}>
                                         <StyledImageWrapper>
                                             <StyledImage
-                                                src={
-                                                    'https://img.youtube.com/vi/' + node.acf.video_id + '/mqdefault.jpg'
-                                                }
+                                                src={`https://img.youtube.com/vi/${node.acf.video_id}/mqdefault.jpg`}
                                                 alt={node.title}
                                             />
                                         </StyledImageWrapper>

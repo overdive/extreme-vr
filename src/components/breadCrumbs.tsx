@@ -15,11 +15,11 @@ const StyledList = styled.ul`
     margin-top: 6px;
     text-overflow: ellipsis;
     white-space: nowrap;
+    list-style: none;
 `;
 
 const StyledItem = styled.li`
     position: relative;
-    list-style: none;
     font-size: 14px;
     &:nth-child(n + 2) {
         padding-left: 20px;

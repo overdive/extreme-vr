@@ -10,10 +10,10 @@ import { IPostData, ICategoryData } from '../types';
 
 interface IFrontPageProps {
     pageContext: {
-        customPostData: {
+        postData: {
             name: string;
             slug: string;
-            postData: { node: IPostData }[];
+            relatedData: { node: IPostData }[];
         }[];
         categoryData: { node: ICategoryData }[];
     };
@@ -44,7 +44,8 @@ const StyledHeadline = styled.h2`
 `;
 
 const FrontPageComponent: React.FC<IFrontPageProps> = props => {
-    const { customPostData, categoryData } = props.pageContext;
+    const propsData = props;
+    const { postData, categoryData } = propsData.pageContext;
     return (
         <Layout>
             <SEO title="Extreme VR | エクストリームスポーツのVR無料動画" />
@@ -53,12 +54,14 @@ const FrontPageComponent: React.FC<IFrontPageProps> = props => {
             </Nav>
             <StyledContainer>
                 <StyledMainContents>
-                    {customPostData.map(node => (
-                        <StyledSection key={node.slug}>
-                            <StyledHeadline>{node.name}</StyledHeadline>
-                            <Slider postData={node.postData} />
-                        </StyledSection>
-                    ))}
+                    {postData.map(node =>
+                        node.relatedData.length ? (
+                            <StyledSection key={node.slug}>
+                                <StyledHeadline>{node.name}</StyledHeadline>
+                                <Slider postData={node.relatedData} />
+                            </StyledSection>
+                        ) : null
+                    )}
                 </StyledMainContents>
                 <Footer />
             </StyledContainer>

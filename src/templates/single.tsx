@@ -114,13 +114,13 @@ const StyledText = styled.span`
 `;
 
 const SinglePageComponent: React.FC<ISinglePostProps> = props => {
-    const { singlePostData, singleCategoryData, categoryData, recommendData } = props.pageContext;
-    const url = 'https://www.youtube.com/embed/' + singlePostData.node.acf.video_id;
+    const propsData = props;
+    const { singlePostData, singleCategoryData, categoryData, recommendData } = propsData.pageContext;
     return (
         <Layout>
             <SEO
-                title={singlePostData.node.title + 'のVR無料動画'}
-                description={singlePostData.node.title + 'のVR無料動画｜Extreme VR'}
+                title={`${singlePostData.node.title}のVR無料動画`}
+                description={`${singlePostData.node.title}のVR無料動画｜Extreme VR`}
             />
             <Nav>
                 <CategoryBar categoryData={categoryData} />
@@ -130,7 +130,7 @@ const SinglePageComponent: React.FC<ISinglePostProps> = props => {
                     <Breadcrumbs categoryData={singleCategoryData} singlePageData={singlePostData} />
                     <StyledSection>
                         <StyledIframeWrapper>
-                            <StyledIframe src={url} />
+                            <StyledIframe src={`https://www.youtube.com/embed/'${singlePostData.node.acf.video_id}`} />
                         </StyledIframeWrapper>
                         <StyledHeadline>{singlePostData.node.title}</StyledHeadline>
                     </StyledSection>
@@ -140,14 +140,10 @@ const SinglePageComponent: React.FC<ISinglePostProps> = props => {
                             <StyledInner>
                                 {recommendData.map(({ node }: { node: IPostData }) => (
                                     <StyledCard key={node.id}>
-                                        <StyledLink to={'/video/' + node.slug}>
+                                        <StyledLink to={`/video/${node.slug}`}>
                                             <StyledImageWrapper>
                                                 <StyledImage
-                                                    src={
-                                                        'https://img.youtube.com/vi/' +
-                                                        node.acf.video_id +
-                                                        '/mqdefault.jpg'
-                                                    }
+                                                    src={`https://img.youtube.com/vi/${node.acf.video_id}/mqdefault.jpg`}
                                                     alt={node.title}
                                                 />
                                             </StyledImageWrapper>
