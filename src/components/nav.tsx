@@ -21,6 +21,7 @@ const StyledNav = styled.nav`
     left: 0;
     z-index: 999;
     overflow: hidden auto;
+    background-color: #303030;
     width: inherit;
     min-width: inherit;
     max-width: inherit;

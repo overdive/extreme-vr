@@ -8,7 +8,6 @@ interface ICategoryBarProps {
 }
 
 const StyledList = styled.ul`
-    background-color: #303030;
     width: 100%;
     height: 100%;
     padding: 20px 0;
@@ -17,6 +16,7 @@ const StyledList = styled.ul`
     transform: translate3d(0, 0, 0);
     list-style: none;
     &.active {
+        overflow: hidden;
         transform: translate3d(-100%, 0, 0);
     }
 `;
@@ -24,8 +24,9 @@ const StyledList = styled.ul`
 const StyledSubList = styled.ul`
     position: absolute;
     top: 0;
+    overflow: hidden;
     left: 100%;
-    background-color: #303030;
+    overflow: hidden auto;
     width: 100%;
     height: 100%;
     padding: 20px 0;
