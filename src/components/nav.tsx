@@ -20,6 +20,7 @@ const StyledNav = styled.nav`
     top: 70px;
     left: 0;
     z-index: 999;
+    overflow: hidden auto;
     width: inherit;
     min-width: inherit;
     max-width: inherit;
