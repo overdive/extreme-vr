@@ -130,7 +130,7 @@ const SinglePageComponent: React.FC<ISinglePostProps> = props => {
                     <Breadcrumbs categoryData={singleCategoryData} singlePageData={singlePostData} />
                     <StyledSection>
                         <StyledIframeWrapper>
-                            <StyledIframe src={`https://www.youtube.com/embed/'${singlePostData.node.acf.video_id}`} />
+                            <StyledIframe src={`https://www.youtube.com/embed/${singlePostData.node.acf.video_id}`} />
                         </StyledIframeWrapper>
                         <StyledHeadline>{singlePostData.node.title}</StyledHeadline>
                     </StyledSection>
