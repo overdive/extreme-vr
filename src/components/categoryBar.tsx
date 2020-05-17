@@ -22,10 +22,12 @@ const StyledSubList = styled.ul`
     width: 100%;
     height: auto;
     max-height: 0;
-    padding: 0 10px;
     box-sizing: border-box;
     transition: max-height 0.5s;
     list-style: none;
+    > li > * {
+        padding-left: 20px;
+    }
     &.active {
         max-height: 100vh;
     }

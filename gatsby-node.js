@@ -21,7 +21,10 @@ exports.createPages = async ({ graphql, actions }) => {
                         }
                     }
                 }
-                allWordpressWpVideoCategories(filter: { count: { gt: 0 } }, sort: { fields: id, order: ASC }) {
+                allWordpressWpVideoCategories(
+                    filter: { count: { gt: 0 } }
+                    sort: { fields: acf___order_id, order: ASC }
+                ) {
                     edges {
                         node {
                             id
@@ -112,7 +115,10 @@ exports.createPages = async ({ graphql, actions }) => {
                                 }
                             }
                         }
-                        allWordpressWpVideoCategories(filter: { count: { gt: 0 } }, sort: { fields: id, order: ASC }) {
+                        allWordpressWpVideoCategories(
+                            filter: { count: { gt: 0 } }
+                            sort: { fields: acf___order_id, order: ASC }
+                        ) {
                             edges {
                                 node {
                                     id
@@ -201,7 +207,10 @@ exports.createPages = async ({ graphql, actions }) => {
                                 }
                             }
                         }
-                        allWordpressWpVideoCategories(filter: { count: { gt: 0 } }, sort: { fields: id, order: ASC }) {
+                        allWordpressWpVideoCategories(
+                            filter: { count: { gt: 0 } }
+                            sort: { fields: acf___order_id, order: ASC }
+                        ) {
                             edges {
                                 node {
                                     id
