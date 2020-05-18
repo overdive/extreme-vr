@@ -21,10 +21,7 @@ exports.createPages = async ({ graphql, actions }) => {
                         }
                     }
                 }
-                allWordpressWpVideoCategories(
-                    filter: { count: { gt: 0 } }
-                    sort: { fields: acf___order_id, order: ASC }
-                ) {
+                allWordpressWpVideoCategories(filter: { count: { gt: 0 } }) {
                     edges {
                         node {
                             id
@@ -32,6 +29,9 @@ exports.createPages = async ({ graphql, actions }) => {
                             slug
                             wordpress_id
                             wordpress_parent
+                            acf {
+                                order_id
+                            }
                         }
                     }
                 }
@@ -46,6 +46,13 @@ exports.createPages = async ({ graphql, actions }) => {
                 const pageTemplate = path.resolve('./src/templates/archive.tsx');
                 const videoPosts = result.data.allWordpressWpVideo.edges;
                 const categoryPosts = result.data.allWordpressWpVideoCategories.edges;
+                categoryPosts.sort((a, b) => {
+                    const orderA = a.node.acf != null ? parseInt(a.node.acf.order_id, 10) : 0;
+                    const orderB = b.node.acf != null ? parseInt(b.node.acf.order_id, 10) : 0;
+                    if (orderA < orderB) return -1;
+                    if (orderA > orderB) return 1;
+                    return 0;
+                });
                 const customCategoryPosts = [];
                 _.each(categoryPosts, primaryPost => {
                     if (primaryPost.node.wordpress_parent === 0) {
@@ -115,10 +122,7 @@ exports.createPages = async ({ graphql, actions }) => {
                                 }
                             }
                         }
-                        allWordpressWpVideoCategories(
-                            filter: { count: { gt: 0 } }
-                            sort: { fields: acf___order_id, order: ASC }
-                        ) {
+                        allWordpressWpVideoCategories(filter: { count: { gt: 0 } }) {
                             edges {
                                 node {
                                     id
@@ -126,6 +130,9 @@ exports.createPages = async ({ graphql, actions }) => {
                                     slug
                                     wordpress_id
                                     wordpress_parent
+                                    acf {
+                                        order_id
+                                    }
                                 }
                             }
                         }
@@ -139,6 +146,13 @@ exports.createPages = async ({ graphql, actions }) => {
                     const pageTemplate = path.resolve('./src/templates/single.tsx');
                     const videoPosts = result.data.allWordpressWpVideo.edges;
                     const categoryPosts = result.data.allWordpressWpVideoCategories.edges;
+                    categoryPosts.sort((a, b) => {
+                        const orderA = a.node.acf != null ? parseInt(a.node.acf.order_id, 10) : 0;
+                        const orderB = b.node.acf != null ? parseInt(b.node.acf.order_id, 10) : 0;
+                        if (orderA < orderB) return -1;
+                        if (orderA > orderB) return 1;
+                        return 0;
+                    });
                     const customCategoryPosts = [];
                     _.each(categoryPosts, primaryPost => {
                         if (primaryPost.node.wordpress_parent === 0) {
@@ -207,10 +221,7 @@ exports.createPages = async ({ graphql, actions }) => {
                                 }
                             }
                         }
-                        allWordpressWpVideoCategories(
-                            filter: { count: { gt: 0 } }
-                            sort: { fields: acf___order_id, order: ASC }
-                        ) {
+                        allWordpressWpVideoCategories(filter: { count: { gt: 0 } }) {
                             edges {
                                 node {
                                     id
@@ -218,6 +229,9 @@ exports.createPages = async ({ graphql, actions }) => {
                                     slug
                                     wordpress_id
                                     wordpress_parent
+                                    acf {
+                                        order_id
+                                    }
                                 }
                             }
                         }
@@ -231,6 +245,13 @@ exports.createPages = async ({ graphql, actions }) => {
                     const pageTemplate = path.resolve('./src/templates/front.tsx');
                     const videoPosts = result.data.allWordpressWpVideo.edges;
                     const categoryPosts = result.data.allWordpressWpVideoCategories.edges;
+                    categoryPosts.sort((a, b) => {
+                        const orderA = a.node.acf != null ? parseInt(a.node.acf.order_id, 10) : 0;
+                        const orderB = b.node.acf != null ? parseInt(b.node.acf.order_id, 10) : 0;
+                        if (orderA < orderB) return -1;
+                        if (orderA > orderB) return 1;
+                        return 0;
+                    });
                     const customPosts = [];
                     const customCategoryPosts = [];
                     _.each(categoryPosts, categoryPost => {
