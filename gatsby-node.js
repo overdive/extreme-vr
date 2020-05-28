@@ -47,10 +47,12 @@ exports.createPages = async ({ graphql, actions }) => {
                 const videoPosts = result.data.allWordpressWpVideo.edges;
                 const categoryPosts = result.data.allWordpressWpVideoCategories.edges;
                 categoryPosts.sort((a, b) => {
-                    const orderA = a.node.acf != null ? parseInt(a.node.acf.order_id, 10) : 0;
-                    const orderB = b.node.acf != null ? parseInt(b.node.acf.order_id, 10) : 0;
-                    if (orderA < orderB) return -1;
+                    const orderA = a.node.acf != null ? parseInt(a.node.acf.order_id, 10) : 9999;
+                    const orderB = b.node.acf != null ? parseInt(b.node.acf.order_id, 10) : 9999;
                     if (orderA > orderB) return 1;
+                    if (orderA < orderB) return -1;
+                    if (a.node.name > b.node.name) return 1;
+                    if (a.node.name < b.node.name) return -1;
                     return 0;
                 });
                 const customCategoryPosts = [];
@@ -147,10 +149,12 @@ exports.createPages = async ({ graphql, actions }) => {
                     const videoPosts = result.data.allWordpressWpVideo.edges;
                     const categoryPosts = result.data.allWordpressWpVideoCategories.edges;
                     categoryPosts.sort((a, b) => {
-                        const orderA = a.node.acf != null ? parseInt(a.node.acf.order_id, 10) : 0;
-                        const orderB = b.node.acf != null ? parseInt(b.node.acf.order_id, 10) : 0;
-                        if (orderA < orderB) return -1;
+                        const orderA = a.node.acf != null ? parseInt(a.node.acf.order_id, 10) : 9999;
+                        const orderB = b.node.acf != null ? parseInt(b.node.acf.order_id, 10) : 9999;
                         if (orderA > orderB) return 1;
+                        if (orderA < orderB) return -1;
+                        if (a.node.name > b.node.name) return 1;
+                        if (a.node.name < b.node.name) return -1;
                         return 0;
                     });
                     const customCategoryPosts = [];
@@ -246,10 +250,12 @@ exports.createPages = async ({ graphql, actions }) => {
                     const videoPosts = result.data.allWordpressWpVideo.edges;
                     const categoryPosts = result.data.allWordpressWpVideoCategories.edges;
                     categoryPosts.sort((a, b) => {
-                        const orderA = a.node.acf != null ? parseInt(a.node.acf.order_id, 10) : 0;
-                        const orderB = b.node.acf != null ? parseInt(b.node.acf.order_id, 10) : 0;
-                        if (orderA < orderB) return -1;
+                        const orderA = a.node.acf != null ? parseInt(a.node.acf.order_id, 10) : 9999;
+                        const orderB = b.node.acf != null ? parseInt(b.node.acf.order_id, 10) : 9999;
                         if (orderA > orderB) return 1;
+                        if (orderA < orderB) return -1;
+                        if (a.node.name > b.node.name) return 1;
+                        if (a.node.name < b.node.name) return -1;
                         return 0;
                     });
                     const customPosts = [];
