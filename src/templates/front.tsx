@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Layout from '../components/layout';
 import Nav from '../components/nav';
@@ -7,6 +7,7 @@ import Slider from '../components/slider';
 import SEO from '../components/seo';
 import Footer from '../components/footer';
 import { IPostData, ICategoryData } from '../types';
+import media from '../components/media';
 
 interface IFrontPageProps {
     pageContext: {
@@ -23,14 +24,24 @@ const StyledContainer = styled.div`
     overflow: hidden;
     flex-grow: 1;
     flex-shrink: 1;
-    width: 84%;
-    min-width: 720px;
+    ${media.pc`
+        width: 84%;
+        min-width: 720px;
+    `}
+    ${media.sp`
+        width: 100%;
+    `}
 `;
 
 const StyledMainContents = styled.main`
     width: 100%;
-    padding: 0 40px;
     box-sizing: border-box;
+    ${media.pc`
+        padding: 0 40px;
+    `}
+    ${media.sp`
+        padding: 0 10px;
+    `}
 `;
 
 const StyledSection = styled.section`
@@ -43,13 +54,52 @@ const StyledHeadline = styled.h2`
     font-weight: 400;
 `;
 
+const StyledButton = styled.a`
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 9999;
+    width: 30px;
+    height: 20px;
+    > span,
+    &::before,
+    &::after {
+        position: absolute;
+        left: 0;
+        border-top: 2px solid white;
+        width: 100%;
+        height: auto;
+        content: '';
+    }
+    > span {
+        top: 50%;
+        transform: translate3d(0, -50%, 0);
+    }
+    &::before {
+        top: 0;
+    }
+    &::after {
+        bottom: 0;
+    }
+    ${media.pc`
+        display: none;
+    `}
+    ${media.sp`
+        display: block;
+    `}
+`;
+
 const FrontPageComponent: React.FC<IFrontPageProps> = props => {
     const propsData = props;
     const { postData, categoryData } = propsData.pageContext;
+    const [state, setState] = useState(false);
     return (
         <Layout>
             <SEO title="Extreme VR | エクストリームスポーツのVR無料動画" />
-            <Nav>
+            <StyledButton onClick={() => (state ? setState(false) : setState(true))}>
+                <span></span>
+            </StyledButton>
+            <Nav className={state ? 'active' : ''}>
                 <CategoryBar categoryData={categoryData} />
             </Nav>
             <StyledContainer>

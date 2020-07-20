@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
 import { ICategoryData } from '../types';
+import media from './media';
 
 interface ICategoryBarProps {
     categoryData: { node: ICategoryData }[];
@@ -10,11 +11,16 @@ interface ICategoryBarProps {
 const StyledList = styled.ul`
     width: 100%;
     height: 100%;
-    padding: 20px 0;
     box-sizing: border-box;
     transition: transform 0.5s;
     transform: translate3d(0, 0, 0);
     list-style: none;
+    ${media.pc`
+        padding: 20px 0;
+    `}
+    ${media.sp`
+        padding: 60px 0;
+    `}
 `;
 
 const StyledSubList = styled.ul`
@@ -34,7 +40,12 @@ const StyledSubList = styled.ul`
 `;
 
 const StyledItem = styled.li`
-    font-size: 16px;
+    ${media.pc`
+        font-size: 16px;
+    `}
+    ${media.sp`
+        font-size: 13px;
+    `}
 `;
 
 const StyledButton = styled.a`
