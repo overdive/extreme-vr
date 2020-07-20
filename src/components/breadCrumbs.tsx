@@ -2,6 +2,7 @@ import { Link } from 'gatsby';
 import React from 'react';
 import styled from 'styled-components';
 import { IPostData, ICategoryData } from '../types';
+import media from './media';
 
 interface IBreadCrumbsProps {
     categoryData: { node: ICategoryData }[];
@@ -16,11 +17,13 @@ const StyledList = styled.ul`
     text-overflow: ellipsis;
     white-space: nowrap;
     list-style: none;
+    ${media.sp`
+        overflow-x: auto;
+    `}
 `;
 
 const StyledItem = styled.li`
     position: relative;
-    font-size: 14px;
     &:nth-child(n + 2) {
         padding-left: 20px;
         &::before {
@@ -40,6 +43,12 @@ const StyledItem = styled.li`
     &:nth-child(3) {
         overflow: hidden;
     }
+    ${media.pc`
+        font-size: 14px;
+    `}
+    ${media.sp`
+        font-size: 13px;
+    `}
 `;
 
 const StyledLink = styled(Link)`

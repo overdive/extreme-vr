@@ -1,18 +1,30 @@
 import React from 'react';
 import styled from 'styled-components';
+import media from './media';
 
 const StyledFooter = styled.footer`
     position: relative;
     background-color: #171717;
-    height: 280px;
-    padding: 20px 40px;
     box-sizing: border-box;
+    ${media.pc`
+        height: 280px;
+        padding: 20px 40px;
+    `}
+    ${media.sp`
+        padding: 10px;
+    `}
 `;
 
 const StyledCopyright = styled.small`
     display: block;
-    font-size: 14px;
+
     text-align: center;
+    ${media.pc`
+        font-size: 14px;
+    `}
+    ${media.sp`
+        font-size: 13px;
+    `}
 `;
 
 const FooterComponent: React.FC = () => {

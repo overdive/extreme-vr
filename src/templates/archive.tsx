@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
 import Layout from '../components/layout';
@@ -8,6 +8,7 @@ import Breadcrumbs from '../components/breadCrumbs';
 import SEO from '../components/seo';
 import Footer from '../components/footer';
 import { IPostData, ICategoryData } from '../types';
+import media from '../components/media';
 
 interface IArchiveProps {
     pageContext: {
@@ -21,19 +22,32 @@ const StyledContainer = styled.div`
     overflow: hidden;
     flex-grow: 1;
     flex-shrink: 1;
-    width: 84%;
-    min-width: 720px;
+    ${media.pc`
+        width: 84%;
+        min-width: 720px;
+    `}
+    ${media.sp`
+        width: 100%;
+    `}
 `;
 
 const StyledMainContents = styled.main`
     width: 100%;
-    padding: 0 40px;
     box-sizing: border-box;
+    ${media.pc`
+        padding: 0 40px;
+    `}
+    ${media.sp`
+        padding: 0 10px;
+    `}
 `;
 
 const StyledInner = styled.div`
     display: flex;
     flex-wrap: wrap;
+    ${media.sp`
+        justify-content: space-between;
+    `}
 `;
 
 const StyledSection = styled.section`
@@ -48,9 +62,15 @@ const StyledHeadline = styled.h2`
 
 const StyledCard = styled.div`
     background-color: #303030;
-    margin-right: 20px;
-    margin-bottom: 40px;
-    width: 340px;
+    ${media.pc`
+        margin-right: 20px;
+        margin-bottom: 40px;
+        width: 340px;
+    `}
+    ${media.sp`
+        margin-bottom: 20px;
+        width: calc(50% - 10px);
+    `}
 `;
 
 const StyledLink = styled(Link)`
@@ -62,7 +82,12 @@ const StyledImageWrapper = styled.div`
     position: relative;
     overflow: hidden;
     width: 100%;
-    height: 190px;
+    ${media.pc`
+        height: 190px;
+    `}
+    ${media.sp`
+        padding-bottom: 56.25%;
+    `}
 `;
 
 const StyledImage = styled.img`
@@ -81,6 +106,14 @@ const StyledCaption = styled.div`
     box-sizing: border-box;
     color: #fff;
     font-size: 18px;
+    ${media.pc`
+        height: 74px;
+        font-size: 18px;
+    `}
+    ${media.sp`
+        height: 54px;
+        font-size: 16px;
+    `}
 `;
 
 const StyledText = styled.span`
@@ -91,16 +124,55 @@ const StyledText = styled.span`
     max-height: calc(2em * 1.4);
 `;
 
+const StyledButton = styled.a`
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 9999;
+    width: 30px;
+    height: 20px;
+    > span,
+    &::before,
+    &::after {
+        position: absolute;
+        left: 0;
+        border-top: 2px solid white;
+        width: 100%;
+        height: auto;
+        content: '';
+    }
+    > span {
+        top: 50%;
+        transform: translate3d(0, -50%, 0);
+    }
+    &::before {
+        top: 0;
+    }
+    &::after {
+        bottom: 0;
+    }
+    ${media.pc`
+        display: none;
+    `}
+    ${media.sp`
+        display: block;
+    `}
+`;
+
 const ArchivePageComponent: React.FC<IArchiveProps> = props => {
     const propsData = props;
     const { postData, categoryData, singleCategoryData } = propsData.pageContext;
+    const [state, setState] = useState(false);
     return (
         <Layout>
             <SEO
                 title={`${singleCategoryData[0].node.name}のVR無料動画一覧`}
                 description={`${singleCategoryData[0].node.name}のVR無料動画｜Extreme VRは、エクストリームスポーツを気軽にVR体験できる無料動画サービスです。`}
             />
-            <Nav>
+            <StyledButton onClick={() => (state ? setState(false) : setState(true))}>
+                <span></span>
+            </StyledButton>
+            <Nav className={state ? 'active' : ''}>
                 <CategoryBar categoryData={categoryData} />
             </Nav>
             <StyledContainer>
