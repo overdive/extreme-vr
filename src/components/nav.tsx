@@ -4,10 +4,10 @@ import media from './media';
 
 interface INavProps {
     children?: React.ReactNode;
-    className?: string;
+    isOpen?: boolean;
 }
 
-const StyledWrapper = styled.div`
+const StyledWrapper = styled.div<INavProps>`
     ${media.pc`
         position: relative;
         width: 16%;
@@ -22,7 +22,13 @@ const StyledWrapper = styled.div`
         top: 0;
         left: 0;
         z-index: 999;
+        background-color: rgba(0, 0, 0, .6);
         width: 100%;
+        min-width: 100%;
+        max-width: 100%;
+        &.active {
+            height: 100%;
+        }
     `}
 `;
 
@@ -42,21 +48,25 @@ const StyledNav = styled.nav`
     ${media.sp`
         position: absolute;
         top: 0;
+        left: auto;
         right: -100%;
         z-index: 999;
+        overflow-y: auto;
         width: 80%;
+        min-width: 80%;
         max-width: 410px;
-        transition: .6s;
+        height: inherit;
+        transition: right .6s;
         &.active {
             right: 0;
         }
     `}
 `;
 
-const NavComponent: React.FC<INavProps> = ({ children, className }) => {
+const NavComponent: React.FC<INavProps> = ({ children, isOpen }) => {
     return (
-        <StyledWrapper>
-            <StyledNav className={className}>{children}</StyledNav>
+        <StyledWrapper className={isOpen ? 'active' : ''}>
+            <StyledNav className={isOpen ? 'active' : ''}>{children}</StyledNav>
         </StyledWrapper>
     );
 };

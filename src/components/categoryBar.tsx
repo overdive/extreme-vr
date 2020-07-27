@@ -19,7 +19,7 @@ const StyledList = styled.ul`
         padding: 20px 0;
     `}
     ${media.sp`
-        padding: 60px 0;
+        padding: 60px 10px;
     `}
 `;
 
@@ -31,6 +31,9 @@ const StyledSubList = styled.ul`
     box-sizing: border-box;
     transition: max-height 0.5s;
     list-style: none;
+    > li {
+        border-bottom: none;
+    }
     > li > * {
         padding-left: 20px;
     }
@@ -44,7 +47,11 @@ const StyledItem = styled.li`
         font-size: 16px;
     `}
     ${media.sp`
+        border-bottom: #565656 solid 1px;
         font-size: 13px;
+        &:last-child {
+            border-bottom: none;
+        }
     `}
 `;
 
