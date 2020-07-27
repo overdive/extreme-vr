@@ -156,7 +156,7 @@ const SinglePageComponent: React.FC<ISinglePostProps> = props => {
             <SEO
                 title={`${singlePostData.node.title}のVR無料動画`}
                 description={`${singlePostData.node.title}のVR無料動画｜Extreme VR`}
-                image={`https://www.youtube.com/embed/${singlePostData.node.acf.video_id}`}
+                image={`https://img.youtube.com/vi/${singlePostData.node.acf.video_id}/mqdefault.jpg`}
             />
             <StyledButtonWrapper onClick={() => (state ? setState(false) : setState(true))}>
                 <Button isOpen={state} />
