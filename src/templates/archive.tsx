@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'gatsby';
 import Layout from '../components/layout';
 import Nav from '../components/nav';
+import Button from '../components/navButton';
 import CategoryBar from '../components/categoryBar';
 import Breadcrumbs from '../components/breadCrumbs';
 import SEO from '../components/seo';
@@ -124,33 +125,11 @@ const StyledText = styled.span`
     max-height: calc(2em * 1.4);
 `;
 
-const StyledButton = styled.a`
+const StyledButtonWrapper = styled.div`
     position: fixed;
     top: 10px;
     right: 10px;
     z-index: 9999;
-    width: 30px;
-    height: 20px;
-    > span,
-    &::before,
-    &::after {
-        position: absolute;
-        left: 0;
-        border-top: 2px solid white;
-        width: 100%;
-        height: auto;
-        content: '';
-    }
-    > span {
-        top: 50%;
-        transform: translate3d(0, -50%, 0);
-    }
-    &::before {
-        top: 0;
-    }
-    &::after {
-        bottom: 0;
-    }
     ${media.pc`
         display: none;
     `}
@@ -169,10 +148,10 @@ const ArchivePageComponent: React.FC<IArchiveProps> = props => {
                 title={`${singleCategoryData[0].node.name}のVR無料動画一覧`}
                 description={`${singleCategoryData[0].node.name}のVR無料動画｜Extreme VRは、エクストリームスポーツを気軽にVR体験できる無料動画サービスです。`}
             />
-            <StyledButton onClick={() => (state ? setState(false) : setState(true))}>
-                <span></span>
-            </StyledButton>
-            <Nav className={state ? 'active' : ''}>
+            <StyledButtonWrapper onClick={() => (state ? setState(false) : setState(true))}>
+                <Button isOpen={state} />
+            </StyledButtonWrapper>
+            <Nav isOpen={state}>
                 <CategoryBar categoryData={categoryData} />
             </Nav>
             <StyledContainer>

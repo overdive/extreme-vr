@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Layout from '../components/layout';
 import Nav from '../components/nav';
+import Button from '../components/navButton';
 import CategoryBar from '../components/categoryBar';
 import Slider from '../components/slider';
 import SEO from '../components/seo';
@@ -54,33 +55,11 @@ const StyledHeadline = styled.h2`
     font-weight: 400;
 `;
 
-const StyledButton = styled.a`
+const StyledButtonWrapper = styled.div`
     position: fixed;
     top: 10px;
     right: 10px;
     z-index: 9999;
-    width: 30px;
-    height: 20px;
-    > span,
-    &::before,
-    &::after {
-        position: absolute;
-        left: 0;
-        border-top: 2px solid white;
-        width: 100%;
-        height: auto;
-        content: '';
-    }
-    > span {
-        top: 50%;
-        transform: translate3d(0, -50%, 0);
-    }
-    &::before {
-        top: 0;
-    }
-    &::after {
-        bottom: 0;
-    }
     ${media.pc`
         display: none;
     `}
@@ -96,10 +75,10 @@ const FrontPageComponent: React.FC<IFrontPageProps> = props => {
     return (
         <Layout>
             <SEO title="Extreme VR | エクストリームスポーツのVR無料動画" />
-            <StyledButton onClick={() => (state ? setState(false) : setState(true))}>
-                <span></span>
-            </StyledButton>
-            <Nav className={state ? 'active' : ''}>
+            <StyledButtonWrapper onClick={() => (state ? setState(false) : setState(true))}>
+                <Button isOpen={state} />
+            </StyledButtonWrapper>
+            <Nav isOpen={state}>
                 <CategoryBar categoryData={categoryData} />
             </Nav>
             <StyledContainer>

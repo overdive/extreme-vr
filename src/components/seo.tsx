@@ -5,8 +5,9 @@ import { useStaticQuery, graphql } from 'gatsby';
 export interface ISeoProps {
     description?: string;
     lang?: string;
-    meta?: any[];
+    image?: string;
     title: string;
+    meta?: any[];
 }
 
 const SeoComponent: React.FC<ISeoProps> = props => {
@@ -17,12 +18,14 @@ const SeoComponent: React.FC<ISeoProps> = props => {
                     title
                     description
                     author
+                    image
                 }
             }
         }
     `);
     const metaSiteTitle = ~props.title.indexOf('|') ? '' : `%s | ${site.siteMetadata.title}`;
     const metaDescription = props.description || site.siteMetadata.description;
+    const metaImage = props.image || site.siteMetadata.image;
     return (
         <Helmet
             htmlAttributes={{ lang: props.lang }}
@@ -46,8 +49,12 @@ const SeoComponent: React.FC<ISeoProps> = props => {
                     content: 'website',
                 },
                 {
+                    property: 'og:image',
+                    content: metaImage,
+                },
+                {
                     name: 'twitter:card',
-                    content: 'summary',
+                    content: metaImage,
                 },
                 {
                     name: 'twitter:creator',
