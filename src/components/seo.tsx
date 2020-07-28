@@ -54,7 +54,7 @@ const SeoComponent: React.FC<ISeoProps> = props => {
                 },
                 {
                     name: 'twitter:card',
-                    content: metaImage,
+                    content: 'summary',
                 },
                 {
                     name: 'twitter:creator',
@@ -67,6 +67,10 @@ const SeoComponent: React.FC<ISeoProps> = props => {
                 {
                     name: 'twitter:description',
                     content: metaDescription,
+                },
+                {
+                    name: 'twitter:image',
+                    content: metaImage,
                 },
             ].concat(props.meta || [])}
         />
