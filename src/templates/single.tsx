@@ -134,6 +134,34 @@ const StyledText = styled.span`
     max-height: calc(2em * 1.4);
 `;
 
+const StyledButton = styled.a`
+    background-color: #ff1400;
+    margin-top: 20px;
+    padding: 0.5em 0;
+    color: #ffffff;
+    font-size: 18px;
+    text-align: center;
+    text-decoration: none;
+    ${media.pc`
+        display: none;
+    `}
+    ${media.sp`
+        display: block;
+    `}
+`;
+
+const StyledNote = styled.p`
+    margin-top: 10px;
+    color: #fff;
+    font-size: 14px;
+    ${media.pc`
+        display: none;
+    `}
+    ${media.sp`
+        display: block;
+    `}
+`;
+
 const StyledButtonWrapper = styled.div`
     position: fixed;
     top: 10px;
@@ -172,6 +200,10 @@ const SinglePageComponent: React.FC<ISinglePostProps> = props => {
                             <StyledIframe src={`https://www.youtube.com/embed/${singlePostData.node.acf.video_id}`} />
                         </StyledIframeWrapper>
                         <StyledHeadline>{singlePostData.node.title}</StyledHeadline>
+                        <StyledButton href={`https://www.youtube.com/watch?v=${singlePostData.node.acf.video_id}`}>
+                            アプリでみる
+                        </StyledButton>
+                        <StyledNote>360°動画はyoutubeのアプリから視聴することが可能です。</StyledNote>
                     </StyledSection>
                     {singlePostData.node.acf.video_recommend_flg === 'true' ? (
                         <StyledSection>

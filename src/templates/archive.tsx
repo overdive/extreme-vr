@@ -103,7 +103,6 @@ const StyledImage = styled.img`
 const StyledCaption = styled.div`
     display: block;
     padding: 10px 8px;
-    height: 74px;
     box-sizing: border-box;
     color: #fff;
     font-size: 18px;
@@ -112,7 +111,7 @@ const StyledCaption = styled.div`
         font-size: 18px;
     `}
     ${media.sp`
-        height: 54px;
+        height: calc((2em * 1.4) + 20px);
         font-size: 16px;
     `}
 `;
