@@ -72,6 +72,10 @@ const SeoComponent: React.FC<ISeoProps> = props => {
                     name: 'twitter:image',
                     content: metaImage,
                 },
+                {
+                    name: 'google-site-verification',
+                    content: site.googleSiteVerification,
+                },
             ].concat(props.meta || [])}
         />
     );

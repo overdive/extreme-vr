@@ -16,6 +16,7 @@ module.exports = {
         author: `@${process.env.GATSBY_SITE_AUTHOR}`,
         siteUrl: `${process.env.GATSBY_SITE_URL_PROTOCOL}://${process.env.GATSBY_SITE_URL_PATH}`,
         image: `${process.env.GATSBY_SITE_IMAGE_PATH}`,
+        googleSiteVerification: `${process.env.GATSBY_GOOGLE_SITE_VERIFICATION}`,
         social: {
             twitter: 'https://www.twitter.com/',
             facebook: 'https://www.facebook.com/',
