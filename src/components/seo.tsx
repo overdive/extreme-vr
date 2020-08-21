@@ -19,6 +19,7 @@ const SeoComponent: React.FC<ISeoProps> = props => {
                     description
                     author
                     image
+                    googleSiteVerification
                 }
             }
         }
@@ -74,7 +75,7 @@ const SeoComponent: React.FC<ISeoProps> = props => {
                 },
                 {
                     name: 'google-site-verification',
-                    content: site.googleSiteVerification,
+                    content: site.siteMetadata.googleSiteVerification,
                 },
             ].concat(props.meta || [])}
         />
