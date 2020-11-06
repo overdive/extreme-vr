@@ -23,7 +23,9 @@
         // any型許可の有無
         "noImplicitAny": false,
         // モジュール解決の方針
-        "moduleResolution": "node"
+        "moduleResolution": "node",
+        // モジュール解決の方針
+        "types": ["node"]
     },
     "include": ["./src/**/*"]
 }
