@@ -72,9 +72,12 @@ const FrontPageComponent: React.FC<IFrontPageProps> = props => {
     const propsData = props;
     const { postData, categoryData } = propsData.pageContext;
     const [state, setState] = useState(false);
+    const indexUrl = `${process.env.GATSBY_SITE_URL_PROTOCOL}://${process.env.GATSBY_SITE_URL_PATH}`;
     return (
         <Layout>
-            <SEO title="Extreme VR | エクストリームスポーツのVR無料動画" />
+            <SEO title="Extreme VR | エクストリームスポーツのVR無料動画">
+                <link rel="index" href={indexUrl} />
+            </SEO>
             <StyledButtonWrapper onClick={() => (state ? setState(false) : setState(true))}>
                 <Button isOpen={state} />
             </StyledButtonWrapper>

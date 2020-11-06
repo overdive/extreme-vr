@@ -8,6 +8,7 @@ export interface ISeoProps {
     image?: string;
     title: string;
     meta?: any[];
+    children?: React.ReactNode;
 }
 
 const SeoComponent: React.FC<ISeoProps> = props => {
@@ -78,7 +79,9 @@ const SeoComponent: React.FC<ISeoProps> = props => {
                     content: site.siteMetadata.googleSiteVerification,
                 },
             ].concat(props.meta || [])}
-        />
+        >
+            {props.children}
+        </Helmet>
     );
 };
 
