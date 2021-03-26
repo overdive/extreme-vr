@@ -6,6 +6,7 @@
     "scripts": {
         "start": "npm run develop",
         "build": "gatsby build",
+        "build:dev": "cross-env GATSBY_ACTIVE_ENV=development gatsby build",
         "develop": "gatsby develop",
         "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
         "serve": "gatsby serve",
@@ -15,9 +16,13 @@
         "stylelint": "stylelint src/**/*.tsx"
     },
     "dependencies": {
+        "algoliasearch": "^4.8.3",
         "babel-plugin-styled-components": "^1.10.7",
+        "cross-env": "^7.0.3",
         "gatsby": "^2.25.2",
+        "gatsby-cli": "^3.1.0",
         "gatsby-image": "^2.2.41",
+        "gatsby-plugin-algolia": "^0.17.0",
         "gatsby-plugin-google-analytics": "^2.2.2",
         "gatsby-plugin-react-helmet": "^3.2.1",
         "gatsby-plugin-sass": "^2.1.29",
@@ -32,6 +37,7 @@
         "react-dom": "^16.12.0",
         "react-helmet": "^5.2.1",
         "react-id-swiper": "^3.0.0",
+        "react-instantsearch-dom": "^6.9.0",
         "ress": "^2.0.4",
         "styled-components": "^4.3.2",
         "styled-media-query": "^2.1.2",
@@ -39,9 +45,12 @@
         "typescript": "^3.7.5"
     },
     "devDependencies": {
+        "@types/algoliasearch": "^3.34.11",
         "@types/node": "^13.7.1",
         "@types/react": "^16.9.19",
         "@types/react-dom": "^16.9.5",
+        "@types/react-instantsearch-core": "^6.10.1",
+        "@types/react-instantsearch-dom": "^6.10.0",
         "@types/react-slick": "^0.23.4",
         "@types/styled-components": "^4.4.3",
         "@types/swiper": "^5.2.1",
