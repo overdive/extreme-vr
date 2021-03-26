@@ -27,7 +27,6 @@ const StyledWrapper = styled.div`
 
 const Search: React.FC = () => {
     const [state, setState] = useState(false);
-    console.log(state);
     return (
         <InstantSearch
                 searchClient={client}
