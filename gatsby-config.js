@@ -4,12 +4,15 @@
  * See: https://www.gatsbyjs.org/docs/gatsby-config/
  */
 
+const env = process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || 'development'
+
 require('dotenv').config({
-    path: `.env.${process.env.NODE_ENV}`,
-});
+    path: `.env.${env}`,
+})
+
+const queries = require('./src/utils/algolia')
 
 module.exports = {
-    /* Your site config here */
     siteMetadata: {
         title: `${process.env.GATSBY_SITE_NAME}`,
         description: `${process.env.GATSBY_SITE_DESCRIPTION}`,
@@ -26,13 +29,12 @@ module.exports = {
         },
     },
     plugins: [
-        {
-            resolve: 'gatsby-plugin-google-analytics',
-            options: {
-                trackingId: process.env.GATSBY_GOOGLE_ANALYTICS,
-                head: true,
-            },
-        },
+        `gatsby-transformer-sharp`,
+        `gatsby-plugin-sharp`,
+        `gatsby-plugin-typescript`,
+        'gatsby-plugin-styled-components',
+        'gatsby-plugin-sass',
+        'gatsby-plugin-react-helmet',
         {
             resolve: `gatsby-source-filesystem`,
             options: {
@@ -43,21 +45,33 @@ module.exports = {
         {
             resolve: `gatsby-source-wordpress`,
             options: {
-                // your WordPress source
+                minimizeDeprecationNotice: true,
                 baseUrl: `${process.env.GATSBY_WORDPRESS_URL_PATH}`,
                 protocol: `${process.env.GATSBY_WORDPRESS_URL_PROTOCOL}`,
-                // is it hosted on wordpress.com, or self-hosted?
                 hostingWPCOM: false,
-                // does your site use the Advanced Custom Fields Plugin?
                 useACF: true,
                 includedRoutes: ['**/video', '**/video_categories', '**/pages', '**/media', '**/taxonomies', '**/tags'],
             },
         },
-        `gatsby-transformer-sharp`,
-        `gatsby-plugin-sharp`,
-        `gatsby-plugin-typescript`,
-        'gatsby-plugin-styled-components',
-        'gatsby-plugin-sass',
-        'gatsby-plugin-react-helmet',
+        ...(process.env.GATSBY_GOOGLE_ANALYTICS ? [
+            {
+                resolve: 'gatsby-plugin-google-analytics',
+                options: {
+                    trackingId: process.env.GATSBY_GOOGLE_ANALYTICS,
+                    head: true,
+                },
+            },
+        ] : []),
+        ...(process.env.GATSBY_ALGOLIA_UPDATE_INDEX === 'true' ? [
+            {
+              resolve: `gatsby-plugin-algolia`,
+              options: {
+                appId: process.env.GATSBY_ALGOLIA_APP_ID,
+                apiKey: process.env.ALGOLIA_ADMIN_KEY,
+                indexName: process.env.GATSBY_ALGOLIA_INDEXNAME,
+                queries
+              }
+            }
+        ] : [])
     ],
-};
+}
