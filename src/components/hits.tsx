@@ -13,11 +13,12 @@ const StyleList = styled.ul`
 
 const StyleItem = styled.li`
     list-style: none;
+    width: inherit;
+    height: 38px;
+    line-height: 38px;
     &:hover {
         background-color: #303030;
     }
-    height: 38px;
-    line-height: 38px;
 `;
 
 const StyledLink = styled(Link)`
@@ -27,6 +28,9 @@ const StyledLink = styled(Link)`
     color: #e6e6e6;
     font-size: 13px;
     text-decoration: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 `;
 
 const Hits: React.FC<HitsProvided<Hit>> = ({
