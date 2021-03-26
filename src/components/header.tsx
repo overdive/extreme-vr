@@ -36,7 +36,7 @@ const StyledLogo = styled.h1`
 
 const StyledSearchWrapper = styled.div`
     position: relative;
-    width: 200px;
+    width: 240px;
     ${media.sp`
         visibility: hidden; 
     `}
