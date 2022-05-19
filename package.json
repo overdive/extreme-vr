@@ -41,7 +41,7 @@
         "sass": "^1.51.0",
         "styled-components": "^4.3.2",
         "styled-media-query": "^2.1.2",
-        "swiper": "^5.3.6",
+        "swiper": "^6.5.1",
         "typescript": "^3.7.5"
     },
     "devDependencies": {
