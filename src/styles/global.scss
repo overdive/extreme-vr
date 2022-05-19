@@ -2,7 +2,7 @@
  * Global Styles
  */
 
-@import 'ress';
+@use 'ress' as ress;
 
 @mixin font-default() {
     font-family: 'Hiragino Sans', Meiryo, Verdana, sans-serif;
